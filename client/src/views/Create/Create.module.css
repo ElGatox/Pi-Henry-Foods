@@ -1,0 +1,123 @@
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 6rem;
+}
+
+/* Estilos para la imagen */
+.image {
+  
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+/* Estilos para el contenedor principal */
+.majorContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    width: 1000px;
+    margin: 0 auto;
+    height: 47rem;
+    border-radius: 80px;
+  margin-top: 2rem;
+  }
+  
+  /* Estilos para el título del formulario */
+  .titulo {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el contenedor de todos los campos */
+  .allContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilos para los campos comunes */
+  .comunStyles7,
+  .comunStyles1,
+  .comunStyles2,
+  .comunStyles3,
+  .comunStyles4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  /* Estilos para las etiquetas de los campos comunes */
+  .label,
+  .label2,
+  .label3,
+  .label4,
+  .label5,
+  .label6 {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 1px;
+  }
+  
+  /* Estilos para los campos de entrada de texto */
+  .formControl,
+  .formControl1,
+  .formControl2,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos para los mensajes de error */
+  p {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para el campo de selección múltiple */
+  .formControl[multiple] {
+    height: 100px;
+  }
+  
+  /* Estilos para el botón "Agregar Paso" */
+  .button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para el botón "Crear receta" */
+  .button1 {
+    padding: 8px 16px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+  }
+  
+  /* Estilos para el contenedor del botón "Crear receta" */
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+  }

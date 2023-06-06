@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.buttons {
+  width: 2rem;
+  height: 2rem;
+}
+
+.buttonsCointainer {
+  display: flex;
+  gap: 12px;
+}
+
+.active {
+  width: 2rem;
+  height: 2rem;
+}

@@ -1,0 +1,124 @@
+
+.loading{
+  height: 100%;
+  width: 100%;
+}
+.contenedor0 {
+  display: flex;
+  /* flex-direction: row; */
+  max-width: 80rem;
+  background-color: white;
+  /* margin: 0 auto; */
+  column-count: 2;
+  /* max-height: 80rem; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin: 0 auto;
+  margin-top: 6rem;
+  height: 40rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+.titulo {
+  font-size: large;
+}
+.text {
+  font-size: smaller;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.h1 {
+  z-index: 1;
+  background-color: #fac21c;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 40rem;
+  font-size: 20px;
+  border: 2px solid rgb(255, 243, 173);
+}
+
+.h2 {
+  font-size: 23px;
+  background-color: #fac21c;
+  width: 39rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.h3 {
+  color: black;
+  margin: 0cm;
+  padding-bottom: 10px;
+}
+
+.span{
+  font-weight: bold;
+}
+.healthScore {
+  position: absolute;
+  z-index: 1;
+  background-color: #fac21c;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 8rem;
+  top: 23rem;
+  left: 23rem;
+  border: 2px solid rgb(255, 243, 173);
+}
+
+.imageContainer1 {
+  width: 556px;
+  height: 370px;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.imageContainer {
+  position: absolute;
+  top: 6rem;
+  left: 23rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.8);
+  height: 371px;
+}
+.titles {
+  position: absolute;
+  top: 10rem;
+  left: 59rem;
+  border-bottom: inset;
+  display: flex;
+  flex-direction: column;
+}
+.containerImgSumm {
+  padding-right: 40px;
+  padding-left: 30px;
+  position: absolute;
+  max-width: 30rem;
+
+  background-color: white;
+  left: 23rem;
+  top: 32rem;
+  border-right: inset;
+  border-left: outset;
+  justify-content: left;
+  text-align: justify;
+  font-size: 13px;
+}
+
+.texto2 {
+  color: white;
+}
+
+.steps {
+  height: 30rem;
+  border-left: outset;
+  position: relative;
+  font-size: smaller;
+  max-width: 30rem;
+  top: 6rem;
+  left: 4rem;
+
+  padding-left: 20px;
+}

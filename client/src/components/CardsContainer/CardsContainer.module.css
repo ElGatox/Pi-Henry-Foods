@@ -1,0 +1,17 @@
+.container {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  flex-direction: row;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 0 auto;
+  max-width: 50%;
+  margin-top: 5rem;
+}
+
+.allCointainer {
+  background-color: whitesmoke;
+}

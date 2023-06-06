@@ -1,0 +1,78 @@
+.imageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.backColor {
+  background-color: rgb(230, 138, 0);
+  width: 100vw;
+  height: 100vh;
+}
+.allContainer {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  top: 2rem;
+  background-color: rgb(230, 138, 0);
+}
+.image {
+  display: flex;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 50px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+}
+
+.textLife {
+  display: flex;
+  position: relative;
+  font-size: 6rem;
+  left: -14rem;
+  top: 7rem;
+  color: rgba(230, 138, 0);
+}
+.textLife1 {
+  display: flex;
+  position: relative;
+  font-size: 3rem;
+  top: 5rem;
+  left: -19rem;
+  color: white;
+}
+
+.textLife2 {
+  display: flex;
+  position: relative;
+  max-width: 20rem;
+  top: 12rem;
+  left: -19rem;
+  font-size: 1.7rem;
+  color: rgba(230, 138, 0);
+}
+
+.textLife3 {
+}
+
+.textsContainer {
+  position: absolute;
+}
+.Link {
+  display: flex;
+  justify-content: space-around !important;
+  align-items: center !important;
+  border-radius: 15px;
+  background-color: white;
+  width: 6rem;
+  height: 2rem;
+  position: absolute;
+  top: 42rem;
+  left: -16rem;
+  text-decoration: none;
+  padding-bottom: 1px;
+  font-weight: lighter;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgb(59, 40, 4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}

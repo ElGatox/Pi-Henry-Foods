@@ -1,0 +1,22 @@
+.body {
+  background-color: whitesmoke !important;
+}
+.separador {
+  height: 1rem;
+  background-color: whitesmoke;
+}
+
+.AllselectorsContainers {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+filter2 {
+  background-color: whitesmoke;
+}
+
+.selectors {
+  border: none;
+}
