@@ -54,8 +54,11 @@ const Home = () => {
     <div>
     
       <SearchBar />
+      <label className={style.indicatorfilters}> Utiliza nuestros filtros para facilitar la busqueda</label>
       <div className={style.AllselectorsContainers}>
+    
         <div className={style.selectorAContainer}>
+      
           <select
             className={style.selectors}
             onChange={filterOrd}
@@ -68,7 +71,9 @@ const Home = () => {
             <option value="noSaludable">Less Healthy</option>
           </select>
         </div>
+     
         <div className={style.selectorBcontainer}>
+          
           <select
             id="filter2"
             className={style.selectors}

@@ -19,7 +19,7 @@ import {
   CLEAR_DETAILS,
 } from "./Actions-types";
 
-const URL = process.env.REACT_APP_URL
+const URL = process.env.REACT_APP_URL;
 
 export const getRecipes = () => {
   return async (dispatch) => {
@@ -40,7 +40,7 @@ export const getRecipes = () => {
 export function getRecipesDb() {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${URL}recipes/db`);
+      const { data } = await axios.get(`${URL}/recipes/db`);
 
       if (!data.length) throw new Error("No recipes");
 
@@ -75,7 +75,7 @@ export const getRecipesId = (id) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.get(`${URL}/recipes/${id}`);
-    
+
       return dispatch({
         type: GET_RECIPES_ID,
         payload: data,
@@ -96,10 +96,8 @@ export function clearDetails() {
 
 export function getRecipesName(name) {
   return async (dispatch) => {
-    const { data } = await axios.get(
-      `${URL}/recipes/?name=${name}`
-    );
-    //if (!data.length) {alert('Receta no encontrada');}
+    const { data } = await axios.get(`${URL}/recipes/?name=${name}`);
+
     dispatch({
       type: GET_RECIPES_NAME,
       payload: data,
@@ -110,10 +108,7 @@ export function getRecipesName(name) {
 export function newRecipe(formData, history) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(
-        `${URL}/recipes`,
-        formData
-      );
+      const { data } = await axios.post(`${URL}/recipes`, formData);
       history.push(`/detail/${data.id}`);
       return dispatch({
         type: NEW_RECIPE,

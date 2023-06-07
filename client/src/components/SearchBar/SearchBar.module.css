@@ -15,7 +15,7 @@
 
 .searchBar {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   border-style: solid;
   border-color: #ffffff;
 
@@ -28,7 +28,7 @@
   font-weight: bold;
   font-size: 45px;
   text-align: center;
-  color: #fac21c;
+  color: #ffffff;
 }
 
 .button {

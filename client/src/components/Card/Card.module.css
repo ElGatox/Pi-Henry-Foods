@@ -1,5 +1,4 @@
 .healtScoreContainer {
-  /* background-color: azure; */
   width: 130px;
   height: 2rem;
   border: 2px solid rgb(255, 243, 173);
@@ -19,8 +18,8 @@
   color: black;
   font-size: small;
   display: flex;
-    justify-content: center;
-    margin-right: 1rem;
+  justify-content: center;
+  margin-right: 1rem;
 }
 .imageContainer {
   display: flex;
@@ -41,7 +40,7 @@
   max-height: 10rem;
 }
 
-.container {
+.allContainer {
   background-color: white;
   width: 15rem;
   margin: 1rem;
@@ -67,7 +66,6 @@
   font-weight: lighter;
   margin-left: 1rem;
   display: flex;
- 
 }
 
 .link {

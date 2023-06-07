@@ -3,7 +3,7 @@ import style from "../Detail/Detail.module.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipesId, loading,clearDetails } from "../../Redux/Actions";
-import  loadingGif from "../../Images/loading1.gif"
+import  loadingGif from "../../Images/LoadingB.gif"
 
 const Detail = () => {
   const { id } = useParams();
@@ -22,6 +22,7 @@ const Detail = () => {
   }, []);
 
   return (
+  
     <div>
       {!recipe.id && isLoading ? (
         <div className={style.loading}>
@@ -32,11 +33,14 @@ const Detail = () => {
           <div className={style.healthScore}>
             <p className={style.text}> HealthScore: {recipe.healthScore}</p>
           </div>
-
+       
           <div className={style.titles}>
             <h1 className={style.h2}>{recipe.name}</h1>
             <p className={style.h3}> Diets: {recipe.diets}</p>
+            
+            
           </div>
+
 
           <div className={style.imageContainer}>
             <img

@@ -1,18 +1,17 @@
-
-.loading{
-  height: 100%;
-  width: 100%;
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 .contenedor0 {
   display: flex;
-  /* flex-direction: row; */
+
   max-width: 80rem;
   background-color: white;
-  /* margin: 0 auto; */
+
   column-count: 2;
-  /* max-height: 80rem; */
-  /* justify-content: center; */
-  /* align-items: center; */
+
   margin: 0 auto;
   margin-top: 6rem;
   height: 40rem;
@@ -53,7 +52,7 @@
   padding-bottom: 10px;
 }
 
-.span{
+.span {
   font-weight: bold;
 }
 .healthScore {

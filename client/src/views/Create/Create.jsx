@@ -5,45 +5,6 @@ import { newRecipe } from "../../Redux/Actions";
 import { useHistory } from "react-router-dom";
 import defaultCreate from "../../Images/fomrsideC.png";
 
-const defaultImagePath = defaultCreate;
-
-let validName = (str) => {
-  let string = /^[a-zA-Z\s]+$/;
-  return string.test(str);
-};
-
-const validateForm = (form) => {
-  let errors = {};
-
-  if (!form.name) {
-    errors.name = "Name required";
-  } else if (!validName(form.name)) {
-    errors.name = "Name invalid";
-  } else {
-    errors.name = " ";
-  }
-
-  if (!form.summary) {
-    errors.summary = "Summary required";
-  }
-
-  if (form.healthScore < 1 || form.healhtScore > 100) {
-    errors.healthScore = "Number between 1-100";
-  }
-
-  if (!form.steps) {
-    errors.steps = "Steps required";
-  }
-  if (!form.diets.length) {
-    errors.diets = "Select at least one diet";
-  }
-
-  if (!form.image) {
-    errors.image = "se usara default";
-  }
-  return errors;
-};
-
 const FormularioReceta = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -52,7 +13,7 @@ const FormularioReceta = () => {
     name: "",
     summary: "",
     healthScore: 0,
-    steps: [{ number: 1, step: "" }],
+    steps: [{ number: 0, step: "" }],
     image: "",
     diets: [],
   });
@@ -77,66 +38,117 @@ const FormularioReceta = () => {
     });
   };
 
-  const onAdd = () => {
+  const onAdd = (event) => {
+    event.preventDefault();
     setDataForm((prev) => ({
       ...prev,
-      steps: [...prev.steps, { number: prev.steps.length, steps: "" }],
+      steps: [...prev.steps, { number: prev.steps.length , steps: "" }],
     }));
   };
 
   const handleChange = (e) => {
     if (e.target.name === "healthScore") {
     }
-    if (e.target.name === "image" && e.target.value === " ") {
-      setDataForm((prev) => ({
-        ...prev,
-        image: defaultImagePath,
-      }));
-    } else {
-      setDataForm((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }));
-    }
-    setErrors(validateForm({ ...dataForm, [e.target.name]: e.target.value }));
+
+    setDataForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(newRecipe(dataForm, history));
+    const validationErrors = validateForm(dataForm);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        dispatch(newRecipe(dataForm, history));
+        console.log("Valid data:", dataForm);
+        alert("La receta se guardó correctamente");
+      } catch (error) {
+        console.error("No se pudo crear tu receta:", error);
+      }
+    }
   };
-  console.log(dataForm.diets);
+
+  const validateForm = (form) => {
+    let errors = {};
+
+    if (!dataForm.name || !dataForm.name.trim()) {
+      errors.name = 'El campo "name" es obligatorio.';
+    } else {
+      const trimmedName = dataForm.name.trim();
+
+      if (/\d/.test(trimmedName)) {
+        errors.name = 'El campo "name" no puede contener números.';
+      }
+
+      if (trimmedName.length > 60) {
+        errors.name = 'El campo "name" no puede tener más de 60 caracteres.';
+      }
+    }
+
+    if (!form.summary) {
+      errors.summary = "Summary required";
+    }
+
+    if (form.healthScore < 1 || form.healthScore > 100) {
+      errors.healthScore = "Number between 1-100";
+    }
+
+    if (!form.steps) {
+      errors.steps = "Steps required";
+    }
+    if (!form.diets.length) {
+      errors.diets = "Select at least one diet";
+    }
+
+    if (!dataForm.diets || dataForm.diets.length === 0) {
+      errors.diets = 'El campo "diets" es obligatorio.';
+    }
+
+    if (!dataForm.image || !dataForm.image.trim()) {
+      errors.image = 'El campo "image" es obligatorio.';
+    } else {
+      const trimmedImage = dataForm.image.trim();
+      const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+      if (!urlPattern.test(trimmedImage)) {
+        errors.image = 'El campo "image" debe ser una URL válida.';
+      }
+    }
+    return errors;
+  };
+
   return (
     <div>
       <div className={style.majorContainer}>
-      <div className={style.imageContainer}>
-  <img src={defaultCreate} alt="Recipe" className={style.image} />
-</div>
-      
+        <div className={style.imageContainer}>
+          <img src={defaultCreate} alt="Recipe" className={style.image} />
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div className={style.allContainer}>
             <div className={style.comunStyles7}>
-              <label className={style.label}>Recipe Name:</label>
+              <label className={style.label}>Nombre de la Receta:</label>
               <input
                 type="text"
                 className={style.formControl}
                 value={dataForm.name}
                 name={"name"}
                 onChange={(event) => handleChange(event)}
-                required
               />
               <p>{errors.name}</p>
             </div>
 
             <div className={style.comunStyles1}>
-              <label className={style.label2}>Summary:</label>
+              <label className={style.label2}>Resumen:</label>
               <input
                 type="text"
                 className={style.formControl1}
                 value={dataForm.summary}
                 name={"summary"}
                 onChange={(event) => handleChange(event)}
-                required
               />
               <p>{errors.summary}</p>
             </div>
@@ -149,13 +161,12 @@ const FormularioReceta = () => {
                 name={"healthScore"}
                 className={style.formControl}
                 onChange={(event) => handleChange(event)}
-                required
               />
               <p>{errors.healthScore}</p>
             </div>
 
             <div className={style.comunStyles3}>
-              <label className={style.label4}>Imagen Url:</label>
+              <label className={style.label4}>Url de la Imagen:</label>
               <input
                 type="text"
                 className={style.formControl2}
@@ -167,24 +178,20 @@ const FormularioReceta = () => {
             </div>
 
             <div className={style.comunStyles4}>
-           
-              <label className={style.label5}>Tipos de dieta:</label>
+              <label className={style.label5}>Tipos de Dieta:</label>
               <select
                 multiple
                 value={dataForm.diets}
                 name={"diets"}
                 className={style.formControl}
-              
                 onChange={(event) => {
-                  console.log("HLIS OTRA VEZ");
+            
                   if (!dataForm.diets.includes(event.target.value)) {
-                    
                     setDataForm((prev) => ({
                       ...prev,
                       diets: [...prev.diets, event.target.value],
                     }));
                   } else {
-                  
                     setDataForm((prev) => ({
                       ...prev,
                       diets: prev.diets.filter(
@@ -210,8 +217,8 @@ const FormularioReceta = () => {
             <div className={style.comunStyles}>
               <label className={style.label6}>Pasos a Seguir: </label>
               {dataForm.steps.map((element, index) => (
-                <textarea
-                key={`textarea-${index}`}
+                <input
+                  key={`textarea-${index}`}
                   value={element.step}
                   name={"steps"}
                   className={style.formControl}
@@ -224,12 +231,11 @@ const FormularioReceta = () => {
                 Agregar Paso
               </button>
             </div>
-            
-            </div>
-            <div className={style.buttonContainer}>
-              <button className={style.button1} type="submit">
-                Crear receta
-              </button>
+          </div>
+          <div className={style.buttonContainer}>
+            <button className={style.button1} type="submit">
+              Crear receta
+            </button>
           </div>
         </form>
       </div>

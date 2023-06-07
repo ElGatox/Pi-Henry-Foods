@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
-    <div className={style.container}>
+    <div className={style.allContainer}>
       <Link to={`detail/${props.id}`} className={style.link}>
         <div className={style.card}>
           <div className={style.imageContainer}>
