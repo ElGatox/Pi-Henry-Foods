@@ -242,7 +242,7 @@ const FormularioReceta = () => {
               <p>{errors.steps}</p>
               <button className={style.button} type="" onClick={onAdd}>
                 {" "}
-                Agregar Paso
+                Instrucciones
               </button>
             </div>
           </div>

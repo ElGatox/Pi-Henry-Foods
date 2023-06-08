@@ -50,9 +50,12 @@ const rootReducer = (state = initialState, action) => {
     case GET_RECIPES_NAME:
       return {
         ...state,
+        currentPage: 1,
         recipes: action.payload,
         backupRecipes: action.payload,
       };
+
+
     case GET_RECIPES_ID:
       return { ...state, details: action.payload };
 
@@ -146,14 +149,7 @@ const rootReducer = (state = initialState, action) => {
         recipes: dietFilter,
       };
 
-    /*case RESET_RECIPES:
-      return {
-        ...state,
-        allRecipes: [...state.backupRecipes],
-        countRecipes: [...state.backupRecipes].length,
-        page: 1,
-      };*/
-
+    
     case LOADING:
       return {
         ...state,

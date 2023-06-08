@@ -26,9 +26,9 @@ const Home = () => {
     dispatch(filterByDiet(e.target.value));
   };
 
-  let start = (currentPage - 1) * 9; // 0
-  let end = currentPage * 9; //9
-  let cantPages = Math.floor(recipes.length / 9); //11 paginas
+  let start = (currentPage - 1) * 9; 
+  let end = currentPage * 9; 
+  let cantPages = Math.floor(recipes.length / 9); 
   let viewRecipes = recipes.slice(start, end);
 
   const filterOrd = (event) => {
