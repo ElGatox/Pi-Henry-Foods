@@ -36,29 +36,9 @@ export default function validation(recipeData) {
       }
     }
   
-    if (!recipeData.analyzedInstructions || !recipeData.analyzedInstructions.trim()) {
-      errors.analyzedInstructions = 'El campo "Instructions" es obligatorio.';
-    } else {
-      if (typeof recipeData.analyzedInstructions !== 'string') {
-        errors.analyzedInstructions = 'El campo "Instructions" debe ser una cadena de texto (string).';
-      } else {
-        recipeData.analyzedInstructions = recipeData.analyzedInstructions.trim();
-      }
-    }
+    
   
-    if (typeof recipeData.healthScore === 'undefined') {
-      errors.healthScore = 'El campo "Health Score" es obligatorio.';
-    } else {
-      if (!recipeData.healthScore) {
-        errors.healthScore = 'El campo "Health Score" no puede estar vacío.';
-      } else {
-        recipeData.healthScore = parseInt(recipeData.healthScore);
-  
-        if (recipeData.healthScore < 0 || recipeData.healthScore > 100) {
-          errors.healthScore = 'El campo "healthScore" debe estar entre 0 y 100.';
-        }
-      }
-    }
+   
   
     if (!recipeData.diets || recipeData.diets.length === 0) {
       errors.diets = 'El campo "diets" es obligatorio.';

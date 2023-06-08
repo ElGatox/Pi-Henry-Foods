@@ -19,4 +19,6 @@
 .active {
   width: 2rem;
   height: 2rem;
+  background-color: #fac21c;
+  border: 2px solid rgb(255, 243, 173);
 }

@@ -1,14 +1,11 @@
-
 import Card from "../Card/Card";
 import style from "./CardsContainer.module.css";
 
-
 const CardsContainer = ({ viewRecipes }) => {
- 
   return (
     <div className={style.allCointainer}>
       <div className={style.container}>
-        {viewRecipes &&
+        {!!viewRecipes.length &&
           viewRecipes.map((recipe) => {
             return (
               <Card

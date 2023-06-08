@@ -9,12 +9,10 @@ import {
   FILTER_SORT_HEALTH_SCORE,
   FILTER_BY_DIETS,
   LOADING,
-  RESET_RECIPES,
-  SAVE_RECIPES,
+
   NEXT_PAGE,
   PREV_PAGE,
   CHANGE_PAG,
-  SEARCH,
   GET_RECIPES_DB,
   CLEAR_DETAILS,
 } from "./Actions-types";
@@ -96,12 +94,16 @@ export function clearDetails() {
 
 export function getRecipesName(name) {
   return async (dispatch) => {
-    const { data } = await axios.get(`${URL}/recipes/?name=${name}`);
+    try {
+      const { data } = await axios.get(`${URL}/recipes/?name=${name}`);
 
-    dispatch({
-      type: GET_RECIPES_NAME,
-      payload: data,
-    });
+      dispatch({
+        type: GET_RECIPES_NAME,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error.response.data)
+    }
   };
 }
 
@@ -120,23 +122,12 @@ export function newRecipe(formData, history) {
   };
 }
 
-export function resetRecipes() {
-  return {
-    type: RESET_RECIPES,
-  };
-}
+
 
 export function loading(isLoading) {
   return {
     type: LOADING,
     payload: isLoading,
-  };
-}
-
-export function saveRecipes(recipes) {
-  return {
-    type: SAVE_RECIPES,
-    payload: recipes,
   };
 }
 
@@ -182,12 +173,5 @@ export const changePag = (pagenumber) => {
   return {
     type: CHANGE_PAG,
     payload: pagenumber++,
-  };
-};
-
-export const setSearch = (payload) => {
-  return {
-    type: SEARCH,
-    payload,
   };
 };

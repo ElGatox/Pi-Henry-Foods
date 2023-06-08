@@ -10,7 +10,7 @@ const Card = (props) => {
             <img
               className={style.image}
               src={props.image}
-              alt="img not found"
+              alt="imgagen no encontrada"
             />
           </div>
           <div className={style.healtScoreContainer}>

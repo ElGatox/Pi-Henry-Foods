@@ -26,9 +26,9 @@ const Home = () => {
     dispatch(filterByDiet(e.target.value));
   };
 
-  let start = (currentPage - 1) * 9;
-  let end = currentPage * 9;
-  let cantPages = Math.floor(recipes.length / 9);
+  let start = (currentPage - 1) * 9; // 0
+  let end = currentPage * 9; //9
+  let cantPages = Math.floor(recipes.length / 9); //11 paginas
   let viewRecipes = recipes.slice(start, end);
 
   const filterOrd = (event) => {
@@ -54,7 +54,7 @@ const Home = () => {
     <div>
     
       <SearchBar />
-      <label className={style.indicatorfilters}> Utiliza nuestros filtros para facilitar la busqueda</label>
+      <label className={style.indicatorfilters}> FILTRA LAS RECETAS PARA FACILITAR TU BUSQUEDA</label>
       <div className={style.AllselectorsContainers}>
     
         <div className={style.selectorAContainer}>
@@ -111,7 +111,7 @@ const Home = () => {
         </div>
       </div>
       <Cards viewRecipes={viewRecipes} />
-      {recipes.length && <Paginado cantPages={cantPages} />}
+      {!!recipes.length && <Paginado cantPages={cantPages} />}
  
     </div>
   );

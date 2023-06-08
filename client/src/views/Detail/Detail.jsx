@@ -19,7 +19,7 @@ const Detail = () => {
     return ()=>{
       dispatch(clearDetails())
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
   

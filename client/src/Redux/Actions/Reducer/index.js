@@ -9,9 +9,6 @@ import {
   FILTER_BY_DIETS,
   LOADING,
   NEW_RECIPE,
-  RESET_RECIPES,
-  SAVE_RECIPES,
-  SEARCH,
   PREV_PAGE,
   CHANGE_PAG,
   NEXT_PAGE,
@@ -25,7 +22,7 @@ const initialState = {
   recipes: [],
   diets: [],
   details: {},
-  countRecipes: 0,
+
   newRecipeCreate: false,
   currentPage: 1,
 };
@@ -50,12 +47,6 @@ const rootReducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
 
-    case SEARCH:
-      return {
-        ...state,
-        search: action.payload,
-      };
-
     case GET_RECIPES_NAME:
       return {
         ...state,
@@ -63,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
         backupRecipes: action.payload,
       };
     case GET_RECIPES_ID:
-      return { ...state, details: action.payload};
+      return { ...state, details: action.payload };
 
     case GET_RECIPES:
       return {
@@ -86,6 +77,7 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload === "asc") {
         return {
           ...state,
+          currentPage: 1,
           recipes: [
             ...state.recipes.sort((prev, next) => {
               if (prev.name > next.name) return 1;
@@ -97,6 +89,7 @@ const rootReducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
+          currentPage: 1,
           recipes: [
             ...state.recipes.sort((prev, next) => {
               if (prev.name > next.name) return -1;
@@ -111,6 +104,7 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload === "saludable") {
         return {
           ...state,
+          currentPage: 1,
           recipes: [
             ...state.recipes.sort((prev, next) => {
               if (prev.healthScore > next.healthScore) return -1;
@@ -122,6 +116,7 @@ const rootReducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
+          currentPage: 1,
           recipes: [
             ...state.recipes.sort((prev, next) => {
               if (prev.healthScore > next.healthScore) return 1;
@@ -147,42 +142,35 @@ const rootReducer = (state = initialState, action) => {
           : recipesByDiet.filter((r) => r.diets.includes(action.payload));
       return {
         ...state,
+        currentPage: 1,
         recipes: dietFilter,
       };
 
-    case RESET_RECIPES:
+    /*case RESET_RECIPES:
       return {
         ...state,
         allRecipes: [...state.backupRecipes],
         countRecipes: [...state.backupRecipes].length,
         page: 1,
-      };
+      };*/
 
     case LOADING:
       return {
         ...state,
-        loading: action.payload
-      };
-
-    case SAVE_RECIPES:
-      return {
-        ...state,
-        allRecipes: action.payload,
-        countRecipes: action.payload.length,
-        page: 1,
+        loading: action.payload,
       };
 
     case NEW_RECIPE:
       return {
         ...state,
-        details: action.payload
+        details: action.payload,
       };
 
     case CLEAR_DETAILS:
-      return {                    
-       ...state,
-       details: {}        
-      } 
+      return {
+        ...state,
+        details: {},
+      };
 
     default:
       return { ...state };

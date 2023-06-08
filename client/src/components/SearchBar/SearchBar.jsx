@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
   const [recipe, setRecipe] = useState("");
-  //const [recipeFound, setRecipeFound] = useState(true);
+
 
   const dispatch = useDispatch();
 

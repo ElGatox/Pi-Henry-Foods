@@ -13,7 +13,7 @@ const FormularioReceta = () => {
     name: "",
     summary: "",
     healthScore: 0,
-    steps: [{ number: 0, step: "" }],
+    steps: [{ number: 1, step: "" }],
     image: "",
     diets: [],
   });
@@ -42,7 +42,7 @@ const FormularioReceta = () => {
     event.preventDefault();
     setDataForm((prev) => ({
       ...prev,
-      steps: [...prev.steps, { number: prev.steps.length , steps: "" }],
+      steps: [...prev.steps, { number: prev.steps.length, steps: "" }],
     }));
   };
 
@@ -60,8 +60,8 @@ const FormularioReceta = () => {
     event.preventDefault();
     const validationErrors = validateForm(dataForm);
     setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
+   
+    if (Object.keys(validationErrors).length === 0 || !validationErrors.steps) {
       try {
         dispatch(newRecipe(dataForm, history));
         console.log("Valid data:", dataForm);
@@ -76,47 +76,62 @@ const FormularioReceta = () => {
     let errors = {};
 
     if (!dataForm.name || !dataForm.name.trim()) {
-      errors.name = 'El campo "name" es obligatorio.';
+      errors.name = 'El campo "nombre de receta" es obligatorio.';
     } else {
       const trimmedName = dataForm.name.trim();
 
       if (/\d/.test(trimmedName)) {
-        errors.name = 'El campo "name" no puede contener números.';
+        errors.name = 'El campo "nombre de receta" no puede contener números.';
       }
 
       if (trimmedName.length > 60) {
-        errors.name = 'El campo "name" no puede tener más de 60 caracteres.';
+        errors.name = 'El campo "nombre de receta" no puede tener más de 60 caracteres.';
       }
     }
 
     if (!form.summary) {
-      errors.summary = "Summary required";
+      errors.summary = "Resumen requerido";
     }
 
-    if (form.healthScore < 1 || form.healthScore > 100) {
-      errors.healthScore = "Number between 1-100";
+    if (typeof dataForm.healthScore === "undefined") {
+      errors.healthScore = 'El campo "Health Score" es obligatorio.';
+    } else {
+      if (!dataForm.healthScore) {
+        errors.healthScore = 'El campo "Health Score" no puede estar vacío.';
+      } else {
+        dataForm.healthScore = parseInt(dataForm.healthScore);
+
+        if (dataForm.healthScore < 0 || dataForm.healthScore > 100) {
+          errors.healthScore =
+            'El campo "healthScore" debe estar entre 0 y 100.';
+        }
+      }
     }
 
-    if (!form.steps) {
-      errors.steps = "Steps required";
+    if (dataForm.steps.length === 1) {
+      errors.steps = "Hace falta agregar este campo.";
+    } else {
+      errors.steps = "";
     }
+
     if (!form.diets.length) {
-      errors.diets = "Select at least one diet";
+      errors.diets = "Elige al menos una dieta";
     }
 
     if (!dataForm.diets || dataForm.diets.length === 0) {
-      errors.diets = 'El campo "diets" es obligatorio.';
+      errors.diets = 'El campo " tipos de dietas" es obligatorio.';
     }
 
     if (!dataForm.image || !dataForm.image.trim()) {
-      errors.image = 'El campo "image" es obligatorio.';
+      errors.image = 'El campo "Imagen Url" es obligatorio.';
     } else {
       const trimmedImage = dataForm.image.trim();
       const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
       if (!urlPattern.test(trimmedImage)) {
-        errors.image = 'El campo "image" debe ser una URL válida.';
+        errors.image = 'El campo "Imagen Url" debe ser una URL válida.';
       }
     }
+
     return errors;
   };
 
@@ -185,7 +200,6 @@ const FormularioReceta = () => {
                 name={"diets"}
                 className={style.formControl}
                 onChange={(event) => {
-            
                   if (!dataForm.diets.includes(event.target.value)) {
                     setDataForm((prev) => ({
                       ...prev,
